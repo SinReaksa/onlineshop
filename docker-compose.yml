@@ -8,14 +8,14 @@ services:
     volumes:
       - ./:/var/www/html
     depends_on:
-      - db
+      - online_shop_db
     environment:
-      MYSQL_HOST: db
+      MYSQL_HOST: online_shop_db
       MYSQL_DATABASE: onlineshop
       MYSQL_USER: root
       MYSQL_PASSWORD: ""
 
-  db:
+  online_shop_db:
     image: mysql:8.0
     restart: unless-stopped
     environment:

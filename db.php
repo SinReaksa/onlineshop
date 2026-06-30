@@ -1,8 +1,8 @@
 <?php
 
 // Database settings for Docker and local development.
-// In Docker, the MySQL service is reachable by the service name `db`.
-$servername = getenv('MYSQL_HOST') ?: "db";
+// In Docker, the MySQL service is reachable by the service name `online_shop_db`.
+$servername = getenv('MYSQL_HOST') ?: "online_shop_db";
 $username = getenv('MYSQL_USER') ?: "root";
 $password = getenv('MYSQL_PASSWORD') ?: "";
 $db = getenv('MYSQL_DATABASE') ?: "onlineshop";
