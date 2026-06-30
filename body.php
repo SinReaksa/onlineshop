@@ -179,14 +179,17 @@
 										
 										if($review_row > 0){
 											$avg_count=$review_row["avg_rating"];
+									$avg_count = is_numeric($avg_count) ? floatval($avg_count) : 0;
+									$filledStars = round($avg_count);
+									$emptyStars = max(0, 5 - $filledStars);
 												$i=1;
-												while($i <= round($avg_count)){
+												while($i <= $filledStars){
 													$i++;
 													echo'
 													<i class="fa fa-star"></i>';
 												}
 												$i=1;
-												while($i <= 5-round($avg_count)){
+												while($i <= $emptyStars){
 													$i++;
 													echo'
 													<i class="fa fa-star-o empty"></i>';
@@ -354,14 +357,17 @@
 										
 										if($review_row > 0){
 											$avg_count=$review_row["avg_rating"];
+									$avg_count = is_numeric($avg_count) ? floatval($avg_count) : 0;
+									$filledStars = round($avg_count);
+									$emptyStars = max(0, 5 - $filledStars);
 												$i=1;
-												while($i <= round($avg_count)){
+												while($i <= $filledStars){
 													$i++;
 													echo'
 													<i class="fa fa-star"></i>';
 												}
 												$i=1;
-												while($i <= 5-round($avg_count)){
+												while($i <= $emptyStars){
 													$i++;
 													echo'
 													<i class="fa fa-star-o empty"></i>';
