@@ -336,8 +336,8 @@ include "header.php";
 										$run_review_query = mysqli_query($con,$rating_query);
 										$review_row = mysqli_fetch_array($run_review_query);
 										
-										if($review_row > 0){
-											$avg_count=$review_row["avg_rating"];
+										if($review_row && $review_row["avg_rating"] !== null){
+											$avg_count = floatval($review_row["avg_rating"]);
 												$i=1;
 												while($i <= round($avg_count)){
 													$i++;

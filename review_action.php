@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 $ip_add = getenv("REMOTE_ADDR");
@@ -11,8 +10,8 @@ if(isset($_POST["review_action"])){
             $run_query = mysqli_query($con,$rating_query);
             $row = mysqli_fetch_array($run_query);
             $r_count = $row['count'];
-            if($row > 0){
-                $avg_count=$row["avg_rating"];
+            if ($r_count > 0) {
+                $avg_count = floatval($row["avg_rating"] ?? 0);
                 echo '<div class="rating-avg">
                 <span>'.$avg_count.'</span>
                 <div class="rating-stars">';
@@ -35,15 +34,15 @@ if(isset($_POST["review_action"])){
             
             
             echo'<ul class="rating">';
-                $stars=array();
-                $total_stars= 0;
-                $rat=1;
+                $stars = array_fill(1, 5, 0);
+                $total_stars = 0;
+                $rat = 1;
                 while ($rat <= 5){
                         $rating_query = "SELECT  COUNT(*) as count FROM reviews WHERE product_id='$p_id' AND rating='$rat'";
                         $run_query = mysqli_query($con,$rating_query);
                         $row = mysqli_fetch_array($run_query);
-                        if($row > 0){
-                            $stars[$rat]= $row['count'];
+                        if ($row && $row['count'] > 0){
+                            $stars[$rat] = $row['count'];
                             $total_stars += $stars[$rat];
                         }
                         $rat++;
@@ -166,8 +165,8 @@ if(isset($_POST["rating_reviews"])){
             $run_query = mysqli_query($con,$rating_query);
             $row = mysqli_fetch_array($run_query);
             $r_count = $row['count'];
-            if($row > 0){
-                $avg_count=$row["avg_rating"];
+            if ($r_count > 0) {
+                $avg_count = floatval($row["avg_rating"] ?? 0);
                 echo '<div class="product-rating">';
                     $i=1;
                     while($i <= round($avg_count)){
